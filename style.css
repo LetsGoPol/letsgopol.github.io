@@ -8,6 +8,7 @@ body {
     font-family: 'Arial', sans-serif;
     background-color: #121212;
     color: #fff;
+    overflow-x: hidden;
 }
 
 header {
@@ -40,6 +41,7 @@ header .navbar a:hover {
     justify-content: center;
     text-align: center;
     color: #fff;
+    position: relative;
 }
 
 .hero h1 {
@@ -52,7 +54,21 @@ header .navbar a:hover {
     font-weight: bold;
 }
 
-.about, .schedule, .socials, .stream {
+button {
+    background-color: #ff6347;
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+button:hover {
+    background-color: #ff4500;
+}
+
+.about, .schedule, .socials, .stream, .game {
     padding: 50px 20px;
     text-align: center;
 }
@@ -85,4 +101,16 @@ footer p {
 .container {
     width: 80%;
     margin: 0 auto;
+}
+
+/* Canvas for the game */
+#gameCanvas {
+    background-color: #1e1e1e;
+    border: 2px solid #ff6347;
+}
+
+/* Particles animation */
+#home {
+    height: 100vh;
+    position: relative;
 }
