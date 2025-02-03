@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LetsGoPol - Streamer Oficial</title>
+  <title>LetsGoPol - Inicio</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Librerías para animaciones -->
+  <!-- Cargar librerías de animación (Typed.js, Particles.js, etc.) -->
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 </head>
@@ -14,199 +14,48 @@
   <header>
     <div class="header-container">
       <div class="logo">
-        <!-- Se puede usar la URL o descargar la imagen a assets -->
+        <!-- Se puede usar la imagen remota o guardarla en assets -->
         <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/8587e006-8578-4c36-b1cc-fa2d067ac9c9-profile_image-70x70.png" alt="Logo LetsGoPol">
       </div>
       <nav class="navbar">
-        <a href="#home">Inicio</a>
-        <a href="#about">Sobre Mí</a>
-        <a href="#schedule">Horario</a>
-        <a href="#store">Tienda</a>
-        <a href="#leaderboard">Clasificación</a>
-        <a href="#orders">Pedidos</a>
-        <a href="#giveaways">Sorteos</a>
-        <a href="#socials">Redes</a>
-        <a href="#stream">Canal</a>
-        <a href="#games">Minijuegos</a>
+        <a href="index.html">Inicio</a>
+        <a href="about.html">Sobre Mí</a>
+        <a href="register.html">Registrarse</a>
+        <a href="schedule.html">Horario</a>
+        <a href="store.html">Tienda</a>
+        <a href="leaderboard.html">Clasificación</a>
+        <a href="orders.html">Pedidos</a>
+        <a href="giveaways.html">Sorteos</a>
+        <a href="socials.html">Redes</a>
+        <a href="channel.html">Canal</a>
+        <a href="games.html">Minijuegos</a>
         <a href="login.html" class="auth-btn">Iniciar Sesión</a>
-        <a href="register.html" class="auth-btn">Registrarse</a>
       </nav>
     </div>
   </header>
 
-  <!-- Sección HERO -->
-  <section id="home" class="hero">
+  <!-- Sección de bienvenida con partículas y texto dinámico -->
+  <section id="hero" class="hero">
     <div id="particles-js"></div>
     <div class="hero-content">
       <h1>¡Bienvenidos a mi mundo!</h1>
       <p class="typed-text"></p>
-      <button onclick="location.href='note.html'">¡Juega conmigo!</button>
+      <!-- Ejemplo: botón que dirige a una sección de minijuegos (o a una herramienta especial) -->
+      <button onclick="location.href='games.html'">¡Juega conmigo!</button>
     </div>
   </section>
 
-  <!-- Sección SOBRE MÍ -->
+  <!-- Puedes incluir otras secciones en index.html o redirigir a archivos separados -->
   <section id="about" class="about">
     <div class="container">
       <h2>Sobre Mí</h2>
-      <p>Soy LetsGoPol, streamer apasionado por los videojuegos y creador de contenido. Comparte momentos épicos conmigo en vivo y únete a nuestra gran comunidad.</p>
+      <p>Soy LetsGoPol, streamer apasionado por los videojuegos. Comparte momentos épicos conmigo y únete a nuestra comunidad.</p>
     </div>
   </section>
 
-  <!-- Sección HORARIO -->
-  <section id="schedule" class="schedule">
-    <div class="container">
-      <h2>Horario de Streams</h2>
-      <ul>
-        <li>Lunes: 7:00 PM</li>
-        <li>Miércoles: 7:00 PM</li>
-        <li>Viernes: 9:00 PM</li>
-      </ul>
-    </div>
-  </section>
+  <!-- Otros enlaces a secciones: Horario, Tienda, Clasificación, Pedidos, Sorteos, Redes, Canal -->
+  <!-- Estos pueden ser páginas independientes. Por ejemplo, haz que "Horario" dirija a schedule.html -->
 
-  <!-- Sección TIENDA -->
-  <section id="store" class="store">
-    <div class="container">
-      <h2>Mi Tienda Oficial</h2>
-      <p>Descubre productos exclusivos y lleva tu fanatismo al siguiente nivel.</p>
-      <div class="store-items">
-        <!-- Producto 1 -->
-        <div class="item">
-          <img src="assets/t-shirt.jpg" alt="Camiseta LetsGoPol">
-          <h3>Camiseta Oficial</h3>
-          <p>Camiseta cómoda y moderna para la comunidad.</p>
-          <span class="price">$19.99</span>
-          <button class="buy-btn" onclick="location.href='carrito.html?producto=camiseta'">Comprar</button>
-        </div>
-        <!-- Producto 2 -->
-        <div class="item">
-          <img src="assets/cap.jpg" alt="Gorra LetsGoPol">
-          <h3>Gorra LetsGoPol</h3>
-          <p>Estilo y calidad en una gorra única.</p>
-          <span class="price">$15.99</span>
-          <button class="buy-btn" onclick="location.href='carrito.html?producto=gorra'">Comprar</button>
-        </div>
-        <!-- Producto 3 -->
-        <div class="item">
-          <img src="assets/mug.jpg" alt="Taza LetsGoPol">
-          <h3>Taza LetsGoPol</h3>
-          <p>La mejor forma de empezar tu día con energía.</p>
-          <span class="price">$9.99</span>
-          <button class="buy-btn" onclick="location.href='carrito.html?producto=taza'">Comprar</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Sección CLASIFICACIÓN (Leaderboard) -->
-  <section id="leaderboard" class="leaderboard">
-    <div class="container">
-      <h2>Tabla de Clasificación</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Posición</th>
-            <th>Nombre</th>
-            <th>Puntaje</th>
-          </tr>
-        </thead>
-        <tbody id="leaderboard-body">
-          <!-- Los datos se actualizarán dinámicamente según los usuarios registrados -->
-          <tr>
-            <td>1</td>
-            <td>Jugador1</td>
-            <td>1500</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Jugador2</td>
-            <td>1200</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Jugador3</td>
-            <td>900</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- Sección PEDIDOS -->
-  <section id="orders" class="orders">
-    <div class="container">
-      <h2>Pedidos y Colaboraciones</h2>
-      <p>Para pedidos especiales o colaboraciones, contáctame en <strong>contacto@letsgopol.com</strong>.</p>
-      <button onclick="location.href='mailto:contacto@letsgopol.com'">Enviar Correo</button>
-    </div>
-  </section>
-
-  <!-- Sección SORTEOS -->
-  <section id="giveaways" class="giveaways">
-    <div class="container">
-      <h2>Sorteos y Concursos</h2>
-      <p>Participa en nuestros sorteos y gana premios exclusivos.</p>
-      <button class="enter-giveaway-btn">Participar en Sorteo</button>
-    </div>
-  </section>
-
-  <!-- Sección REDES SOCIALES -->
-  <section id="socials" class="socials">
-    <div class="container">
-      <h2>Sígueme en Redes Sociales</h2>
-      <div class="social-icons">
-        <a href="https://www.twitch.tv/LetsGoPol" target="_blank"><img src="assets/twitch-icon.png" alt="Twitch"></a>
-        <a href="https://twitter.com/LetsGoPol" target="_blank"><img src="assets/twitter-icon.png" alt="Twitter"></a>
-        <a href="https://www.instagram.com/LetsGoPol" target="_blank"><img src="assets/instagram-icon.png" alt="Instagram"></a>
-        <a href="https://www.tiktok.com/@LetsGoPol" target="_blank"><img src="assets/tiktok-icon.png" alt="TikTok"></a>
-        <a href="https://www.youtube.com/c/LetsGoPol" target="_blank"><img src="assets/youtube-icon.png" alt="YouTube"></a>
-        <a href="https://discord.gg/uGsbGa6YWP" target="_blank"><img src="assets/discord-icon.png" alt="Discord"></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Sección CANAL EN VIVO -->
-  <section id="stream" class="stream">
-    <div class="container">
-      <h2>Ver Mi Canal en Vivo</h2>
-      <iframe src="https://player.twitch.tv/?channel=LetsGoPol" frameborder="0" allowfullscreen scrolling="no" height="500" width="100%"></iframe>
-    </div>
-  </section>
-
-  <!-- Sección MINIJUEGOS -->
-  <section id="games" class="games">
-    <div class="container">
-      <h2>Minijuegos Interactivos</h2>
-      <p>Elige entre varios juegos y compite por el puntaje más alto.</p>
-      <div class="games-container">
-        <!-- Juego 1: Dispara y Evita -->
-        <div class="game-item">
-          <h3>Dispara y Evita</h3>
-          <canvas id="gameCanvas" width="800" height="600"></canvas>
-          <p id="gameScore">Puntaje: 0</p>
-          <button onclick="startGame('dispara')">Iniciar Juego</button>
-        </div>
-        <!-- Juego 2: Atrapa las Estrellas -->
-        <div class="game-item">
-          <h3>Atrapa las Estrellas</h3>
-          <canvas id="starGameCanvas" width="800" height="600"></canvas>
-          <p id="starGameScore">Puntaje: 0</p>
-          <button onclick="startGame('star')">Iniciar Juego</button>
-        </div>
-        <!-- Juego 3: Memoria (Nuevo) -->
-        <div class="game-item">
-          <h3>Juego de Memoria</h3>
-          <div id="memory-game">
-            <!-- Se generarán las tarjetas dinámicamente -->
-          </div>
-          <p id="memoryScore">Puntaje: 0</p>
-          <button onclick="startMemoryGame()">Iniciar Memoria</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
   <footer>
     <div class="container">
       <p>&copy; 2025 LetsGoPol | Todos los derechos reservados.</p>
