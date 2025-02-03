@@ -7,10 +7,20 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/8587e006-8578-4c36-b1cc-fa2d067ac9c9-profile_image-70x70.png" alt="Logo">
+      </div>
+      <nav class="navbar">
+        <a href="index.html">Inicio</a>
+        <a href="games.html">Minijuegos</a>
+      </nav>
+    </div>
+  </header>
   <div class="container">
     <h2>Minijuegos</h2>
     <p>Monedas disponibles: <span id="userCoins">0</span></p>
-    <!-- Sección para canjear un código secreto -->
     <div id="redeemCode">
       <input type="text" id="secretCode" placeholder="Introduce código secreto">
       <button onclick="redeemSecretCode()">Canjear Código</button>
@@ -38,6 +48,15 @@
         </div>
         <p id="memoryScore">Puntaje: 0</p>
         <button onclick="startMemoryGame()">Iniciar (Coste: 25 monedas)</button>
+      </div>
+      <!-- Máquina Tragaperras para Sorteos -->
+      <div class="game-item">
+        <h3>Máquina Tragaperras</h3>
+        <div id="slotMachine">
+          <button id="slotSpinBtn">Tirar (Coste: 10 monedas)</button>
+          <div id="slotResult"></div>
+        </div>
+        <button id="paypalSpinBtn" onclick="location.href='https://www.paypal.com/cgi-bin/webscr?business=polpostigo@gmail.com&cmd=_donations&currency_code=EUR'">Tirar (1€)</button>
       </div>
     </div>
   </div>
