@@ -1,43 +1,29 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panel Administrativo - LetsGoPol</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="admin-container">
-    <h2>Panel Administrativo</h2>
-    <!-- Edición de Horario -->
-    <section id="admin-schedule">
-      <h3>Editar Horario</h3>
-      <table id="adminScheduleTable">
-        <!-- Se cargarán los datos del horario -->
-      </table>
-      <form id="adminScheduleForm">
-        <input type="text" id="adminDia" placeholder="Día" required>
-        <input type="text" id="adminHora" placeholder="Hora" required>
-        <button type="submit">Guardar Horario</button>
-      </form>
-    </section>
-    <!-- Gestión de Pedidos -->
-    <section id="admin-orders">
-      <h3>Pedidos Recibidos</h3>
-      <table id="adminOrdersTable">
-        <!-- Se generarán las filas con los pedidos -->
-      </table>
-    </section>
-    <!-- Crear Código Secreto -->
-    <section id="admin-codes">
-      <h3>Crear Código Secreto</h3>
-      <form id="adminCodeForm">
-        <input type="text" id="newCode" placeholder="Código" required>
-        <input type="number" id="codeValue" placeholder="Valor en monedas" required>
-        <button type="submit">Crear Código</button>
-      </form>
-    </section>
-  </div>
-  <script src="admin.js"></script>
-</body>
-</html>
+<script>
+function validarAdmin() {
+    let usuarioActual = JSON.parse(localStorage.getItem("usuarioActual"));
+
+    if (!usuarioActual) {
+        alert("🚫 Debes iniciar sesión primero.");
+        window.location.href = "login.html";
+        return;
+    }
+
+    if (usuarioActual.rol !== "admin") {
+        let claveAdmin = prompt("🔑 Ingresa la clave de administrador:");
+        if (claveAdmin === "yayaeric") {
+            usuarioActual.rol = "admin";
+            localStorage.setItem("usuarioActual", JSON.stringify(usuarioActual));
+            alert("✅ Ahora eres administrador.");
+        } else {
+            alert("❌ Clave incorrecta. Acceso denegado.");
+            window.location.href = "index.html";
+        }
+    }
+}
+
+validarAdmin();
+</script>
+
+<h1>Panel de Administración</h1>
+<p>Bienvenido, aquí puedes gestionar el sitio.</p>
+<button onclick="cerrarSesion()">Cerrar Sesión</button>
