@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minijuegos - LetsGoPol</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Minijuegos</h2>
+    <p>Monedas disponibles: <span id="userCoins">0</span></p>
+    <!-- Sección para canjear un código secreto -->
+    <div id="redeemCode">
+      <input type="text" id="secretCode" placeholder="Introduce código secreto">
+      <button onclick="redeemSecretCode()">Canjear Código</button>
+    </div>
+    <div class="games-container">
+      <!-- Juego 1: Dispara y Evita -->
+      <div class="game-item">
+        <h3>Dispara y Evita</h3>
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        <p id="gameScore">Puntaje: 0</p>
+        <button onclick="startGame('dispara')">Iniciar (Coste: 20 monedas)</button>
+      </div>
+      <!-- Juego 2: Atrapa las Estrellas -->
+      <div class="game-item">
+        <h3>Atrapa las Estrellas</h3>
+        <canvas id="starGameCanvas" width="800" height="600"></canvas>
+        <p id="starGameScore">Puntaje: 0</p>
+        <button onclick="startGame('star')">Iniciar (Coste: 15 monedas)</button>
+      </div>
+      <!-- Juego 3: Memoria -->
+      <div class="game-item">
+        <h3>Juego de Memoria</h3>
+        <div id="memory-game">
+          <!-- Tarjetas generadas dinámicamente -->
+        </div>
+        <p id="memoryScore">Puntaje: 0</p>
+        <button onclick="startMemoryGame()">Iniciar (Coste: 25 monedas)</button>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
