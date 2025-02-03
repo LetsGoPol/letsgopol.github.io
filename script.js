@@ -1,17 +1,9 @@
-function mostrarMensaje() {
-    alert("¡Hola! Has hecho clic en el botón.");
-}
+// Typed.js for dynamic text
+var options = {
+    strings: ["¡Únete a mis streams!", "¡Vamos a jugar juntos!", "¡Haz parte de la comunidad!"],
+    typeSpeed: 50,
+    backSpeed: 25,
+    loop: true
+};
 
-function mostrarTienda() {
-    let tienda = document.getElementById("productos");
-    if (tienda.classList.contains("hidden")) {
-        tienda.classList.remove("hidden");
-    } else {
-        tienda.classList.add("hidden");
-    }
-}
-
-function registrarVoto(voto) {
-    let resultado = document.getElementById("resultado");
-    resultado.textContent = "Gracias por tu voto: " + voto;
-}
+var typed = new Typed(".typed-text", options);
