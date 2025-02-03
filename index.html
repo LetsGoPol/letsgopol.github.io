@@ -5,16 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LetsGoPol - Streamer Oficial</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Typed.js y Particles.js -->
+  <!-- Librerías para animaciones -->
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 </head>
 <body>
-  <!-- Header con logo y navegación -->
+  <!-- Menú principal -->
   <header>
-    <div class="container header-container">
+    <div class="header-container">
       <div class="logo">
-        <img src="assets/logo.png" alt="Logo LetsGoPol">
+        <!-- Se puede usar la URL o descargar la imagen a assets -->
+        <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/8587e006-8578-4c36-b1cc-fa2d067ac9c9-profile_image-70x70.png" alt="Logo LetsGoPol">
       </div>
       <nav class="navbar">
         <a href="#home">Inicio</a>
@@ -27,6 +28,8 @@
         <a href="#socials">Redes</a>
         <a href="#stream">Canal</a>
         <a href="#games">Minijuegos</a>
+        <a href="login.html" class="auth-btn">Iniciar Sesión</a>
+        <a href="register.html" class="auth-btn">Registrarse</a>
       </nav>
     </div>
   </header>
@@ -37,7 +40,7 @@
     <div class="hero-content">
       <h1>¡Bienvenidos a mi mundo!</h1>
       <p class="typed-text"></p>
-      <button onclick="scrollToSection('games')">¡Juega conmigo!</button>
+      <button onclick="location.href='note.html'">¡Juega conmigo!</button>
     </div>
   </section>
 
@@ -45,7 +48,7 @@
   <section id="about" class="about">
     <div class="container">
       <h2>Sobre Mí</h2>
-      <p>Soy LetsGoPol, streamer apasionado por los videojuegos y creador de contenido. Me encanta compartir momentos épicos con mi comunidad en vivo. ¡Únete y sé parte de la experiencia!</p>
+      <p>Soy LetsGoPol, streamer apasionado por los videojuegos y creador de contenido. Comparte momentos épicos conmigo en vivo y únete a nuestra gran comunidad.</p>
     </div>
   </section>
 
@@ -65,31 +68,31 @@
   <section id="store" class="store">
     <div class="container">
       <h2>Mi Tienda Oficial</h2>
-      <p>Descubre productos exclusivos y hazte con el merchandising oficial.</p>
+      <p>Descubre productos exclusivos y lleva tu fanatismo al siguiente nivel.</p>
       <div class="store-items">
-        <!-- Camiseta -->
+        <!-- Producto 1 -->
         <div class="item">
           <img src="assets/t-shirt.jpg" alt="Camiseta LetsGoPol">
           <h3>Camiseta Oficial</h3>
           <p>Camiseta cómoda y moderna para la comunidad.</p>
           <span class="price">$19.99</span>
-          <button class="buy-btn">Comprar</button>
+          <button class="buy-btn" onclick="location.href='carrito.html?producto=camiseta'">Comprar</button>
         </div>
-        <!-- Gorra -->
+        <!-- Producto 2 -->
         <div class="item">
           <img src="assets/cap.jpg" alt="Gorra LetsGoPol">
           <h3>Gorra LetsGoPol</h3>
           <p>Estilo y calidad en una gorra única.</p>
           <span class="price">$15.99</span>
-          <button class="buy-btn">Comprar</button>
+          <button class="buy-btn" onclick="location.href='carrito.html?producto=gorra'">Comprar</button>
         </div>
-        <!-- Taza -->
+        <!-- Producto 3 -->
         <div class="item">
           <img src="assets/mug.jpg" alt="Taza LetsGoPol">
           <h3>Taza LetsGoPol</h3>
           <p>La mejor forma de empezar tu día con energía.</p>
           <span class="price">$9.99</span>
-          <button class="buy-btn">Comprar</button>
+          <button class="buy-btn" onclick="location.href='carrito.html?producto=taza'">Comprar</button>
         </div>
       </div>
     </div>
@@ -108,7 +111,7 @@
           </tr>
         </thead>
         <tbody id="leaderboard-body">
-          <!-- Filas generadas dinámicamente -->
+          <!-- Los datos se actualizarán dinámicamente según los usuarios registrados -->
           <tr>
             <td>1</td>
             <td>Jugador1</td>
@@ -133,8 +136,8 @@
   <section id="orders" class="orders">
     <div class="container">
       <h2>Pedidos y Colaboraciones</h2>
-      <p>Si deseas realizar un pedido especial o colaborar, escríbeme a través de mis redes o envía un correo a <strong>contacto@letsgopol.com</strong>.</p>
-      <button onclick="window.location.href='mailto:contacto@letsgopol.com'">Enviar Correo</button>
+      <p>Para pedidos especiales o colaboraciones, contáctame en <strong>contacto@letsgopol.com</strong>.</p>
+      <button onclick="location.href='mailto:contacto@letsgopol.com'">Enviar Correo</button>
     </div>
   </section>
 
@@ -166,7 +169,7 @@
   <section id="stream" class="stream">
     <div class="container">
       <h2>Ver Mi Canal en Vivo</h2>
-      <iframe src="https://player.twitch.tv/?channel=LetsGoPol" frameborder="0" allowfullscreen="true" scrolling="no" height="500" width="100%"></iframe>
+      <iframe src="https://player.twitch.tv/?channel=LetsGoPol" frameborder="0" allowfullscreen scrolling="no" height="500" width="100%"></iframe>
     </div>
   </section>
 
@@ -174,7 +177,7 @@
   <section id="games" class="games">
     <div class="container">
       <h2>Minijuegos Interactivos</h2>
-      <p>Elige el juego y compite por el puntaje más alto.</p>
+      <p>Elige entre varios juegos y compite por el puntaje más alto.</p>
       <div class="games-container">
         <!-- Juego 1: Dispara y Evita -->
         <div class="game-item">
@@ -183,12 +186,21 @@
           <p id="gameScore">Puntaje: 0</p>
           <button onclick="startGame('dispara')">Iniciar Juego</button>
         </div>
-        <!-- Juego 2: Atrapa las Estrellas (Ejemplo adicional) -->
+        <!-- Juego 2: Atrapa las Estrellas -->
         <div class="game-item">
           <h3>Atrapa las Estrellas</h3>
           <canvas id="starGameCanvas" width="800" height="600"></canvas>
           <p id="starGameScore">Puntaje: 0</p>
           <button onclick="startGame('star')">Iniciar Juego</button>
+        </div>
+        <!-- Juego 3: Memoria (Nuevo) -->
+        <div class="game-item">
+          <h3>Juego de Memoria</h3>
+          <div id="memory-game">
+            <!-- Se generarán las tarjetas dinámicamente -->
+          </div>
+          <p id="memoryScore">Puntaje: 0</p>
+          <button onclick="startMemoryGame()">Iniciar Memoria</button>
         </div>
       </div>
     </div>
@@ -201,7 +213,6 @@
     </div>
   </footer>
 
-  <!-- Script principal -->
   <script src="script.js"></script>
 </body>
 </html>
