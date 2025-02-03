@@ -9,11 +9,50 @@
 <body>
     <header>
         <h1>Bienvenido a Mi Página Web</h1>
+        <nav>
+            <ul>
+                <li><a href="#sobre">Sobre Mí</a></li>
+                <li><a href="#tienda">Tienda</a></li>
+                <li><a href="#redes">Redes Sociales</a></li>
+                <li><a href="#encuesta">Encuesta</a></li>
+            </ul>
+        </nav>
     </header>
-    <main>
-        <p>Esta es una página web sencilla creada con HTML, CSS y JavaScript.</p>
-        <button onclick="mostrarMensaje()">Haz clic aquí</button>
-    </main>
+    
+    <section id="sobre">
+        <h2>Sobre Mí</h2>
+        <p>Hola, soy [Tu Nombre] y esta es mi página personal donde comparto mi tienda y redes sociales.</p>
+    </section>
+    
+    <section id="tienda">
+        <h2>Mi Tienda</h2>
+        <p>Aquí puedes ver y comprar mis productos:</p>
+        <button onclick="mostrarTienda()">Ver Productos</button>
+        <div id="productos" class="hidden">
+            <p>Producto 1 - $10</p>
+            <p>Producto 2 - $20</p>
+        </div>
+    </section>
+    
+    <section id="redes">
+        <h2>Mis Redes Sociales</h2>
+        <p>Sígueme en:</p>
+        <ul>
+            <li><a href="#" target="_blank">Facebook</a></li>
+            <li><a href="#" target="_blank">Instagram</a></li>
+            <li><a href="#" target="_blank">Twitter</a></li>
+        </ul>
+    </section>
+    
+    <section id="encuesta">
+        <h2>Encuesta</h2>
+        <p>¿Te gusta esta página?</p>
+        <button onclick="registrarVoto('sí')">Sí</button>
+        <button onclick="registrarVoto('no')">No</button>
+        <p id="resultado"></p>
+    </section>
+    
     <script src="script.js"></script>
 </body>
 </html>
+
