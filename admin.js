@@ -1,13 +1,13 @@
-// admin.js – Panel Administrativo
+// Solo se permite el acceso si el usuario actual es admin (simulado con user.admin == true)
 document.addEventListener("DOMContentLoaded", function(){
-  // Verificar que el usuario actual es administrador (simulación: user.admin == true)
   let currentUser = JSON.parse(localStorage.getItem("currentUser"));
   if (!currentUser || !currentUser.admin) {
     alert("Acceso restringido. Debes ser administrador.");
     location.href = "index.html";
+    return;
   }
   
-  // Cargar horario desde localStorage (si existe)
+  // HORARIO: Cargar y renderizar
   const scheduleTable = document.getElementById("adminScheduleTable");
   let schedule = JSON.parse(localStorage.getItem("schedule")) || [
     {dia:"Lunes", hora:"7:00 PM"},
@@ -17,17 +17,14 @@ document.addEventListener("DOMContentLoaded", function(){
   function renderSchedule() {
     scheduleTable.innerHTML = "";
     schedule.forEach((item, index) => {
-      let row = `<tr>
+      scheduleTable.innerHTML += `<tr>
         <td>${item.dia}</td>
         <td>${item.hora}</td>
         <td><button onclick="deleteSchedule(${index})">Eliminar</button></td>
       </tr>`;
-      scheduleTable.innerHTML += row;
     });
   }
   renderSchedule();
-  
-  // Manejar formulario para agregar nuevo horario
   document.getElementById("adminScheduleForm").addEventListener("submit", function(e){
     e.preventDefault();
     let dia = document.getElementById("adminDia").value.trim();
@@ -37,20 +34,19 @@ document.addEventListener("DOMContentLoaded", function(){
     renderSchedule();
     this.reset();
   });
-  
   window.deleteSchedule = function(index) {
     schedule.splice(index, 1);
     localStorage.setItem("schedule", JSON.stringify(schedule));
     renderSchedule();
   }
   
-  // Gestión de pedidos: se simula que los pedidos se almacenan en localStorage como array de objetos.
+  // PEDIDOS: Cargar y renderizar
   const ordersTable = document.getElementById("adminOrdersTable");
   let orders = JSON.parse(localStorage.getItem("orders")) || [];
   function renderOrders() {
     ordersTable.innerHTML = "";
     orders.forEach((order, index) => {
-      let row = `<tr>
+      ordersTable.innerHTML += `<tr>
         <td>${order.id}</td>
         <td>${order.usuario}</td>
         <td>${order.producto}</td>
@@ -65,24 +61,21 @@ document.addEventListener("DOMContentLoaded", function(){
           <button onclick="deleteOrder(${index})">Eliminar</button>
         </td>
       </tr>`;
-      ordersTable.innerHTML += row;
     });
   }
   renderOrders();
-  
   window.updateOrderStatus = function(index, status) {
     orders[index].estado = status;
     localStorage.setItem("orders", JSON.stringify(orders));
     document.getElementById("orderStatus_" + index).textContent = status;
   }
-  
   window.deleteOrder = function(index) {
     orders.splice(index, 1);
     localStorage.setItem("orders", JSON.stringify(orders));
     renderOrders();
   }
   
-  // Crear código secreto para canjear monedas
+  // CÓDIGO SECRETO: Crear y almacenar
   document.getElementById("adminCodeForm").addEventListener("submit", function(e){
     e.preventDefault();
     let newCode = document.getElementById("newCode").value.trim();
