@@ -6,8 +6,10 @@
     <title>LetsGoPol - Streamer</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 </head>
 <body>
+
     <header>
         <div class="logo">
             <img src="assets/logo.png" alt="LetsGoPol Logo">
@@ -18,16 +20,20 @@
             <a href="#schedule">Horario</a>
             <a href="#socials">Redes Sociales</a>
             <a href="#stream">Mi Canal</a>
+            <a href="#game">Minijuego</a>
         </div>
     </header>
 
+    <!-- HERO SECTION -->
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>¡Bienvenidos a mi canal, soy LetsGoPol!</h1>
             <p class="typed-text"></p>
+            <button onclick="startGame()">¡Juega conmigo!</button>
         </div>
     </section>
 
+    <!-- SOBRE MÍ -->
     <section id="about" class="about">
         <div class="container">
             <h2>Sobre Mí</h2>
@@ -35,6 +41,7 @@
         </div>
     </section>
 
+    <!-- HORARIO DE STREAM -->
     <section id="schedule" class="schedule">
         <div class="container">
             <h2>Horario de Stream</h2>
@@ -46,6 +53,7 @@
         </div>
     </section>
 
+    <!-- REDES SOCIALES -->
     <section id="socials" class="socials">
         <div class="container">
             <h2>Sígueme en Redes Sociales</h2>
@@ -57,10 +65,20 @@
         </div>
     </section>
 
+    <!-- CANAL EN VIVO -->
     <section id="stream" class="stream">
         <div class="container">
             <h2>Ver Mi Canal en Vivo</h2>
             <iframe src="https://player.twitch.tv/?channel=LetsGoPol" frameborder="0" allowfullscreen="true" scrolling="no" height="500" width="100%"></iframe>
+        </div>
+    </section>
+
+    <!-- MINIJUEGO -->
+    <section id="game" class="game">
+        <div class="container">
+            <h2>Minijuego: ¡Dispara y evita!</h2>
+            <canvas id="gameCanvas" width="800" height="600"></canvas>
+            <p id="score">Puntaje: 0</p>
         </div>
     </section>
 
@@ -69,7 +87,82 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <script>
+        // Fondo animado de partículas
+        particlesJS('home', {
+            "particles": {
+                "number": {
+                    "value": 100,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#ff6347"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        "opacity_min": 0.1
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 5,
+                        "size_min": 0.1
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ff6347",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 3,
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
->
-
