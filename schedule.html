@@ -7,7 +7,17 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Solo usuarios administradores pueden editar (simulación) -->
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/8587e006-8578-4c36-b1cc-fa2d067ac9c9-profile_image-70x70.png" alt="Logo">
+      </div>
+      <nav class="navbar">
+        <a href="index.html">Inicio</a>
+        <a href="admin.html" class="auth-btn">Admin</a>
+      </nav>
+    </div>
+  </header>
   <div class="container">
     <h2>Horario de Streams</h2>
     <table id="scheduleTable">
@@ -32,8 +42,8 @@
         </tr>
       </tbody>
     </table>
-    <!-- Formulario para editar (visible solo para admin) -->
-    <div id="editSchedule" style="display:none;">
+    <!-- Solo se mostrará el formulario si es admin; para este ejemplo se muestra siempre -->
+    <div id="editSchedule">
       <h3>Editar Horario</h3>
       <form id="scheduleForm">
         <input type="text" id="dia" placeholder="Día (ej. Martes)" required>
