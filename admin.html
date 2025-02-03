@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Administrativo - LetsGoPol</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="admin-container">
+    <h2>Panel Administrativo</h2>
+    <!-- Ejemplo: Editar Horario -->
+    <section id="admin-schedule">
+      <h3>Editar Horario</h3>
+      <table id="adminScheduleTable">
+        <!-- Se cargarán los datos del horario -->
+      </table>
+      <form id="adminScheduleForm">
+        <input type="text" id="adminDia" placeholder="Día" required>
+        <input type="text" id="adminHora" placeholder="Hora" required>
+        <button type="submit">Guardar Horario</button>
+      </form>
+    </section>
+    <!-- Ejemplo: Gestión de Pedidos -->
+    <section id="admin-orders">
+      <h3>Pedidos Recibidos</h3>
+      <table id="adminOrdersTable">
+        <!-- Se generarán las filas con los pedidos y botones para cambiar estado -->
+      </table>
+    </section>
+    <!-- Ejemplo: Introducir Código Secreto para monedas -->
+    <section id="admin-codes">
+      <h3>Crear Código Secreto</h3>
+      <form id="adminCodeForm">
+        <input type="text" id="newCode" placeholder="Código" required>
+        <input type="number" id="codeValue" placeholder="Valor en monedas" required>
+        <button type="submit">Crear Código</button>
+      </form>
+    </section>
+  </div>
+  <script src="admin.js"></script>
+</body>
+</html>
