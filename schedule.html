@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Horario - LetsGoPol</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Solo usuarios administradores pueden editar (simulación) -->
+  <div class="container">
+    <h2>Horario de Streams</h2>
+    <table id="scheduleTable">
+      <thead>
+        <tr>
+          <th>Día</th>
+          <th>Hora</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Lunes</td>
+          <td>7:00 PM</td>
+        </tr>
+        <tr>
+          <td>Miércoles</td>
+          <td>7:00 PM</td>
+        </tr>
+        <tr>
+          <td>Viernes</td>
+          <td>9:00 PM</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Formulario para editar (visible solo para admin) -->
+    <div id="editSchedule" style="display:none;">
+      <h3>Editar Horario</h3>
+      <form id="scheduleForm">
+        <input type="text" id="dia" placeholder="Día (ej. Martes)" required>
+        <input type="text" id="hora" placeholder="Hora (ej. 8:00 PM)" required>
+        <button type="submit">Guardar</button>
+      </form>
+    </div>
+  </div>
+  <script src="admin.js"></script>
+</body>
+</html>
