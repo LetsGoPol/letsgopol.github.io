@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canal en Vivo - LetsGoPol</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Ver Mi Canal en Vivo</h2>
+    <div class="channel-wrapper">
+      <iframe src="https://player.twitch.tv/?channel=LetsGoPol" frameborder="0" allowfullscreen scrolling="no" height="500" width="100%"></iframe>
+      <!-- Simulación de chat integrado y donaciones -->
+      <div class="channel-extras">
+        <h3>Chat en Vivo</h3>
+        <div id="chatBox">[Chat simulado...]</div>
+        <h3>Donaciones</h3>
+        <button onclick="location.href='https://www.paypal.com/cgi-bin/webscr?business=polpostigo@gmail.com&cmd=_donations&currency_code=EUR'">Donar via PayPal</button>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
