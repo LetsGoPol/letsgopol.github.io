@@ -4,15 +4,14 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   background-color: #121212;
   color: #fff;
   line-height: 1.6;
 }
 
-/* HEADER Y NAVEGACIÓN */
+/* HEADER Y MENÚ */
 header {
   background-color: #202020;
   padding: 15px 0;
@@ -21,7 +20,6 @@ header {
   top: 0;
   z-index: 1000;
 }
-
 .header-container {
   width: 90%;
   max-width: 1200px;
@@ -30,12 +28,10 @@ header {
   justify-content: space-between;
   align-items: center;
 }
-
 .logo img {
   width: 70px;
   border-radius: 50%;
 }
-
 .navbar a {
   color: #fff;
   margin: 0 15px;
@@ -43,15 +39,25 @@ header {
   text-decoration: none;
   transition: color 0.3s ease;
 }
-
 .navbar a:hover {
   color: #ff6347;
 }
-
 .auth-btn {
   border: 1px solid #ff6347;
   padding: 5px 10px;
   border-radius: 5px;
+}
+
+/* SECCIONES */
+section {
+  padding: 80px 20px;
+  margin-top: 80px;
+}
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 /* HERO */
@@ -62,35 +68,29 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 80px; /* compensar header */
   overflow: hidden;
 }
-
 #particles-js {
   position: absolute;
   width: 100%;
   height: 100%;
   z-index: 1;
 }
-
 .hero-content {
   position: relative;
   z-index: 2;
   max-width: 800px;
   padding: 20px;
 }
-
 .hero h1 {
   font-size: 48px;
   margin-bottom: 20px;
 }
-
 .typed-text {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 30px;
 }
-
 .hero button {
   background-color: #ff6347;
   border: none;
@@ -101,44 +101,20 @@ header {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-
 .hero button:hover {
   background-color: #ff4500;
 }
 
-/* CONTENEDORES DE SECCIÓN */
-section {
-  padding: 80px 20px;
-}
-
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-/* SECCIONES: SOBRE MÍ, HORARIO, TIENDA, ETC. */
-/* ... (utiliza los estilos proporcionados en el ejemplo anterior para cada sección) */
-
-/* Estilos para la tienda, leaderboard, pedidos, sorteos, redes, canal en vivo, minijuegos se mantienen igual */
-/* ... */
-
-/* FORMULARIOS DE LOGIN Y REGISTRO */
+/* AUTH CONTAINER */
 .auth-container {
   width: 90%;
   max-width: 400px;
-  margin: 100px auto;
+  margin: 120px auto;
   background-color: #1e1e1e;
   padding: 30px;
   border-radius: 10px;
   text-align: center;
 }
-
-.auth-container h2 {
-  margin-bottom: 20px;
-}
-
 .auth-container input {
   width: 100%;
   padding: 12px;
@@ -146,7 +122,6 @@ section {
   border: none;
   border-radius: 5px;
 }
-
 .auth-container button {
   width: 100%;
   padding: 12px;
@@ -157,61 +132,49 @@ section {
   cursor: pointer;
 }
 
-.auth-container a {
-  color: #ff6347;
-  text-decoration: none;
+/* TABLAS */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px auto;
 }
-
-/* NOTA Y CARRITO */
-.note-container,
-.cart-container {
-  width: 90%;
-  max-width: 600px;
-  margin: 100px auto;
-  background-color: #1e1e1e;
-  padding: 20px;
-  border-radius: 10px;
+table th, table td {
+  padding: 12px;
+  border: 1px solid #333;
   text-align: center;
 }
-
-.note-container textarea {
-  width: 100%;
-  height: 150px;
-  margin: 15px 0;
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
+table th {
+  background-color: #202020;
 }
 
-.note-container button,
-.cart-container button {
-  background-color: #ff6347;
-  border: none;
-  padding: 12px 20px;
-  color: #fff;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-/* MEMORIA (Minijuego) */
-#memory-game {
+/* MINIJUEGOS Y CARDS */
+.games-container, .store-items {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  gap: 30px;
+}
+.game-item, .item {
+  background-color: #333;
+  padding: 20px;
+  width: 280px;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+.game-item:hover, .item:hover {
+  transform: scale(1.05);
+}
+.game-item canvas, .item img {
+  width: 100%;
+  border-radius: 5px;
 }
 
-.memory-card {
-  width: 80px;
-  height: 80px;
-  background-color: #333;
-  border: 2px solid #ff6347;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 36px;
-  color: #fff;
-  cursor: pointer;
+/* FOOTER */
+footer {
+  background-color: #202020;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 14px;
 }
 
 /* RESPONSIVE */
@@ -220,16 +183,13 @@ section {
     margin: 0 10px;
     font-size: 14px;
   }
-  
   .hero h1 {
     font-size: 36px;
   }
-  
   .typed-text {
     font-size: 20px;
   }
-  
-  .store .item {
+  .item, .game-item {
     width: 90%;
     max-width: 350px;
   }
