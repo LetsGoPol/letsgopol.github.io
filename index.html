@@ -3,56 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Página Web</title>
+    <title>LetsGoPol - Streamer</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 </head>
 <body>
     <header>
-        <h1>Bienvenido a Mi Página Web</h1>
-        <nav>
-            <ul>
-                <li><a href="#sobre">Sobre Mí</a></li>
-                <li><a href="#tienda">Tienda</a></li>
-                <li><a href="#redes">Redes Sociales</a></li>
-                <li><a href="#encuesta">Encuesta</a></li>
-            </ul>
-        </nav>
+        <div class="logo">
+            <img src="assets/logo.png" alt="LetsGoPol Logo">
+        </div>
+        <div class="navbar">
+            <a href="#home">Inicio</a>
+            <a href="#about">Sobre Mí</a>
+            <a href="#schedule">Horario</a>
+            <a href="#socials">Redes Sociales</a>
+            <a href="#stream">Mi Canal</a>
+        </div>
     </header>
-    
-    <section id="sobre">
-        <h2>Sobre Mí</h2>
-        <p>Hola, soy [Tu Nombre] y esta es mi página personal donde comparto mi tienda y redes sociales.</p>
-    </section>
-    
-    <section id="tienda">
-        <h2>Mi Tienda</h2>
-        <p>Aquí puedes ver y comprar mis productos:</p>
-        <button onclick="mostrarTienda()">Ver Productos</button>
-        <div id="productos" class="hidden">
-            <p>Producto 1 - $10</p>
-            <p>Producto 2 - $20</p>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>¡Bienvenidos a mi canal, soy LetsGoPol!</h1>
+            <p class="typed-text"></p>
         </div>
     </section>
-    
-    <section id="redes">
-        <h2>Mis Redes Sociales</h2>
-        <p>Sígueme en:</p>
-        <ul>
-            <li><a href="#" target="_blank">Facebook</a></li>
-            <li><a href="#" target="_blank">Instagram</a></li>
-            <li><a href="#" target="_blank">Twitter</a></li>
-        </ul>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2>Sobre Mí</h2>
+            <p>Soy LetsGoPol, un streamer apasionado por los videojuegos, especialmente <em>Fortnite</em> y <em>Valorant</em>. Me encanta interactuar con mi comunidad y pasar un buen rato jugando y charlando. ¡Acompáñame en mis transmisiones en vivo!</p>
+        </div>
     </section>
-    
-    <section id="encuesta">
-        <h2>Encuesta</h2>
-        <p>¿Te gusta esta página?</p>
-        <button onclick="registrarVoto('sí')">Sí</button>
-        <button onclick="registrarVoto('no')">No</button>
-        <p id="resultado"></p>
+
+    <section id="schedule" class="schedule">
+        <div class="container">
+            <h2>Horario de Stream</h2>
+            <ul>
+                <li>Lunes: 7:00 PM</li>
+                <li>Miércoles: 7:00 PM</li>
+                <li>Viernes: 9:00 PM</li>
+            </ul>
+        </div>
     </section>
-    
+
+    <section id="socials" class="socials">
+        <div class="container">
+            <h2>Sígueme en Redes Sociales</h2>
+            <div class="social-icons">
+                <a href="https://www.twitch.tv/LetsGoPol" target="_blank"><img src="assets/twitch-icon.png" alt="Twitch"></a>
+                <a href="https://twitter.com/LetsGoPol" target="_blank"><img src="assets/twitter-icon.png" alt="Twitter"></a>
+                <a href="https://www.instagram.com/LetsGoPol" target="_blank"><img src="assets/instagram-icon.png" alt="Instagram"></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="stream" class="stream">
+        <div class="container">
+            <h2>Ver Mi Canal en Vivo</h2>
+            <iframe src="https://player.twitch.tv/?channel=LetsGoPol" frameborder="0" allowfullscreen="true" scrolling="no" height="500" width="100%"></iframe>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 LetsGoPol | Todos los derechos reservados.</p>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
+>
 
