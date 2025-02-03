@@ -1,57 +1,22 @@
-// -------------------------
-// INICIALIZACIÓN GLOBAL
-// -------------------------
+// INICIALIZACIÓN
 document.addEventListener("DOMContentLoaded", function () {
-  // Inicialización de Typed.js
+  // Inicializa Typed.js
   new Typed(".typed-text", {
     strings: ["¡Únete a mis streams!", "¡Vamos a jugar juntos!", "¡Forma parte de la comunidad!"],
     typeSpeed: 50,
     backSpeed: 25,
     loop: true
   });
-  
-  // Inicialización de Particles.js ya se realizó en index.html
-  // Cargar monedas del usuario (simulado, se guarda en localStorage)
+  // Inicializa Particles.js (la configuración ya está en index.html)
   updateUserCoinsDisplay();
+  
+  // Si estamos en la página de carrito, cargar el contenido
+  if (document.getElementById("cartContent")) {
+    loadCart();
+  }
 });
 
-// Función para actualizar la visualización de monedas
-function updateUserCoinsDisplay() {
-  let currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  let coins = currentUser ? (currentUser.coins || 0) : 0;
-  let coinElem = document.getElementById("userCoins");
-  if (coinElem) coinElem.textContent = coins;
-}
-
-// -------------------------
-// SISTEMA DE MONEDAS Y CÓDIGOS SECRETOS
-// -------------------------
-function redeemSecretCode() {
-  let code = document.getElementById("secretCode").value.trim();
-  let validCodes = JSON.parse(localStorage.getItem("secretCodes")) || [];
-  let currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  if (!currentUser) {
-    alert("Debes iniciar sesión.");
-    return;
-  }
-  let found = validCodes.find(item => item.code === code);
-  if (found) {
-    // Sumar monedas al usuario y eliminar el código (si se usa solo una vez)
-    currentUser.coins = (currentUser.coins || 0) + found.value;
-    localStorage.setItem("currentUser", JSON.stringify(currentUser));
-    updateUserCoinsDisplay();
-    alert("Código canjeado: +" + found.value + " monedas");
-    // Remover el código de la lista
-    validCodes = validCodes.filter(item => item.code !== code);
-    localStorage.setItem("secretCodes", JSON.stringify(validCodes));
-  } else {
-    alert("Código incorrecto.");
-  }
-}
-
-// -------------------------
-// REGISTRO E INICIO DE SESIÓN
-// -------------------------
+// SISTEMA DE USUARIOS
 function saveUser(user) {
   let users = JSON.parse(localStorage.getItem("users")) || [];
   if (users.find(u => u.username === user.username)) return false;
@@ -59,7 +24,6 @@ function saveUser(user) {
   localStorage.setItem("users", JSON.stringify(users));
   return true;
 }
-
 function loginUser(username, password) {
   let users = JSON.parse(localStorage.getItem("users")) || [];
   let user = users.find(u => u.username === username && u.password === password);
@@ -70,17 +34,20 @@ function loginUser(username, password) {
   return false;
 }
 
-// Manejo de formularios en login.html y register.html (ya implementado en esos archivos)
+// Actualiza la visualización de monedas
+function updateUserCoinsDisplay() {
+  let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  let coins = currentUser ? (currentUser.coins || 0) : 0;
+  let coinElem = document.getElementById("userCoins");
+  if (coinElem) coinElem.textContent = coins;
+}
 
-// -------------------------
 // CARRITO DE COMPRAS
-// -------------------------
 function addToCart(product) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   cart.push(product);
   localStorage.setItem("cart", JSON.stringify(cart));
 }
-
 function loadCart() {
   const cartContent = document.getElementById("cartContent");
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -96,14 +63,12 @@ function loadCart() {
     });
   }
 }
-
 function confirmarCompra() {
   alert("Compra confirmada. ¡Gracias por tu compra!");
   localStorage.removeItem("cart");
   loadCart();
 }
-
-// En cart.html, al cargar se llama loadCart() y se agrega el producto si existe query string
+// Si se añade un producto mediante query string
 document.addEventListener("DOMContentLoaded", function () {
   const urlParams = new URLSearchParams(window.location.search);
   if (urlParams.has("producto")) {
@@ -112,11 +77,79 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// -------------------------
-// MINIJUEGOS: DISPARA Y EVITA, ATRAPA LAS ESTRELLAS, MEMORIA
-// Cada juego verificará si el usuario tiene suficientes monedas, deducirá el coste y luego iniciará el juego.
-// (Los juegos se encuentran en juegos.html; funciones startGame, startStarGame, startMemoryGame se definen aquí)
-// Ejemplo para Dispara y Evita:
+// MINIJUEGOS
+// Variables y funciones para "Dispara y Evita"
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas ? canvas.getContext("2d") : null;
+let bullets = [], targets = [], gameScore = 0, gameRunning = false;
+class Target {
+  constructor(x, y, radius, speed) {
+    this.x = x; this.y = y; this.radius = radius; this.speed = speed; this.direction = 1;
+  }
+  update() {
+    this.x += this.speed * this.direction;
+    if (this.x + this.radius > canvas.width || this.x - this.radius < 0) this.direction *= -1;
+  }
+  draw() {
+    ctx.fillStyle = "#00ff00";
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+class Bullet {
+  constructor(x, y, dx, dy) {
+    this.x = x; this.y = y; this.dx = dx; this.dy = dy; this.radius = 5;
+  }
+  update() { this.x += this.dx; this.y += this.dy; }
+  draw() {
+    ctx.fillStyle = "#ff6347";
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+function spawnTarget() {
+  let x = Math.random() * (canvas.width - 40) + 20;
+  targets.push(new Target(x, 50, 20, 2 + Math.random() * 2));
+}
+if (canvas) {
+  canvas.addEventListener("click", function (e) {
+    if (!gameRunning) return;
+    const rect = canvas.getBoundingClientRect();
+    let clickX = e.clientX - rect.left, clickY = e.clientY - rect.top;
+    let startX = canvas.width / 2, startY = canvas.height - 30;
+    let angle = Math.atan2(clickY - startY, clickX - startX);
+    let speed = 7;
+    bullets.push(new Bullet(startX, startY, speed * Math.cos(angle), speed * Math.sin(angle)));
+  });
+}
+function detectCollisions() {
+  bullets.forEach((bullet, bi) => {
+    targets.forEach((target, ti) => {
+      if (Math.hypot(bullet.x - target.x, bullet.y - target.y) < bullet.radius + target.radius) {
+        bullets.splice(bi, 1); targets.splice(ti, 1);
+        gameScore += 10; spawnTarget();
+      }
+    });
+  });
+}
+function gameLoop() {
+  if (!gameRunning) return;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  bullets.forEach(b => { b.update(); b.draw(); });
+  targets.forEach(t => { t.update(); t.draw(); });
+  detectCollisions();
+  drawGameScore();
+  requestAnimationFrame(gameLoop);
+}
+function drawGameScore() {
+  if (!ctx) return;
+  ctx.font = "20px Arial"; ctx.fillStyle = "#fff";
+  ctx.fillText("Puntaje: " + gameScore, 10, 30);
+  let scoreElem = document.getElementById("gameScore");
+  if (scoreElem) scoreElem.textContent = "Puntaje: " + gameScore;
+}
 function startGame(gameType) {
   let currentUser = JSON.parse(localStorage.getItem("currentUser"));
   if (!currentUser) { alert("Debes iniciar sesión."); return; }
@@ -125,56 +158,118 @@ function startGame(gameType) {
   currentUser.coins -= cost;
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
   updateUserCoinsDisplay();
-  // Iniciar el juego correspondiente (las funciones gameLoop, starGameLoop, etc. ya definidas)
   if (gameType === 'dispara') {
-    gameRunning = true;
-    bullets = [];
-    targets = [];
-    gameScore = 0;
-    spawnTarget();
-    gameLoop();
+    gameRunning = true; bullets = []; targets = []; gameScore = 0;
+    spawnTarget(); gameLoop();
   } else if (gameType === 'star') {
-    starGameRunning = true;
-    stars = [];
-    starScore = 0;
-    starGameLoop();
+    startStarGame();
+  } else {
+    startMemoryGame();
   }
 }
-
+// "Atrapa las Estrellas"
+const starCanvas = document.getElementById("starGameCanvas");
+const starCtx = starCanvas ? starCanvas.getContext("2d") : null;
+let stars = [], starPlayer = { x: starCanvas ? starCanvas.width / 2 : 0, y: starCanvas ? starCanvas.height - 50 : 0, size: 20 }, starScore = 0, starGameRunning = false;
+if (starCanvas) {
+  starCanvas.addEventListener("mousemove", function (e) {
+    let rect = starCanvas.getBoundingClientRect();
+    starPlayer.x = e.clientX - rect.left;
+  });
+}
+function spawnStar() {
+  let x = Math.random() * (starCanvas.width - 20) + 10;
+  stars.push({ x: x, y: 0, size: 10, speed: 2 + Math.random() * 3 });
+}
+function starGameLoop() {
+  if (!starGameRunning) return;
+  starCtx.clearRect(0, 0, starCanvas.width, starCanvas.height);
+  starCtx.fillStyle = "#ff6347";
+  starCtx.fillRect(starPlayer.x - starPlayer.size / 2, starPlayer.y - starPlayer.size / 2, starPlayer.size, starPlayer.size);
+  if (Math.random() < 0.03) spawnStar();
+  stars.forEach((star, i) => {
+    star.y += star.speed;
+    starCtx.fillStyle = "#ffff00";
+    starCtx.beginPath();
+    starCtx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+    starCtx.fill();
+    if (star.y + star.size > starPlayer.y - starPlayer.size / 2 &&
+        star.x > starPlayer.x - starPlayer.size / 2 &&
+        star.x < starPlayer.x + starPlayer.size / 2) {
+      stars.splice(i, 1); starScore += 5;
+    }
+  });
+  drawStarScore(); requestAnimationFrame(starGameLoop);
+}
+function drawStarScore() {
+  if (!starCtx) return;
+  starCtx.font = "20px Arial"; starCtx.fillStyle = "#fff";
+  starCtx.fillText("Puntaje: " + starScore, 10, 30);
+  let scoreElem = document.getElementById("starGameScore");
+  if (scoreElem) scoreElem.textContent = "Puntaje: " + starScore;
+}
+function startStarGame() {
+  starGameRunning = true; stars = []; starScore = 0;
+  starGameLoop();
+}
+// Juego de Memoria (simplificado)
+let memoryCards = [], memoryFlipped = [], memoryScore = 0;
 function startMemoryGame() {
-  // Verificar monedas y deducir coste (25 monedas)
   let currentUser = JSON.parse(localStorage.getItem("currentUser"));
   if (!currentUser) { alert("Debes iniciar sesión."); return; }
   if ((currentUser.coins || 0) < 25) { alert("No tienes suficientes monedas."); return; }
   currentUser.coins -= 25;
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
   updateUserCoinsDisplay();
-  // Iniciar juego de memoria (ya definido)
-  // ...
-  // Se llama a startMemoryGame() que genera las tarjetas
+  let container = document.getElementById("memory-game");
+  container.innerHTML = "";
+  memoryCards = []; memoryFlipped = []; memoryScore = 0;
+  const images = ["😀","🎮","🚀","🌟","🎵","⚡","🔥","💎"];
+  let cards = images.concat(images).sort(() => 0.5 - Math.random());
+  cards.forEach((img, i) => {
+    let card = document.createElement("div");
+    card.classList.add("memory-card");
+    card.dataset.value = img;
+    card.dataset.index = i;
+    card.textContent = "";
+    card.addEventListener("click", flipCard);
+    container.appendChild(card);
+    memoryCards.push(card);
+  });
+}
+function flipCard() {
+  if (this.classList.contains("flipped")) return;
+  this.classList.add("flipped"); this.textContent = this.dataset.value;
+  memoryFlipped.push(this);
+  if (memoryFlipped.length === 2) {
+    setTimeout(checkMemoryMatch, 1000);
+  }
+}
+function checkMemoryMatch() {
+  const [card1, card2] = memoryFlipped;
+  if (card1.dataset.value === card2.dataset.value) {
+    memoryScore += 10;
+  } else {
+    card1.classList.remove("flipped"); card2.classList.remove("flipped");
+    card1.textContent = ""; card2.textContent = "";
+  }
+  memoryFlipped = [];
+  document.getElementById("memoryScore").textContent = "Puntaje: " + memoryScore;
 }
 
-// -------------------------
-// (Aquí se incluyen las funciones para los juegos Dispara y Evita, Atrapa las Estrellas, y Memoria)
-// El código de ejemplo para Dispara y Evita y Atrapa las Estrellas se ha presentado en la versión anterior.
-// Para el juego de memoria se generan tarjetas y se evalúan pares, etc.
-
-// -------------------------
-// SORTEOS: TRAGAPERRAS
-document.getElementById("slotSpinBtn") && document.getElementById("slotSpinBtn").addEventListener("click", function(){
+// CANJE DE CÓDIGOS SECRETOS
+function redeemSecretCode() {
+  let code = document.getElementById("secretCode").value.trim();
+  let validCodes = JSON.parse(localStorage.getItem("secretCodes")) || [];
   let currentUser = JSON.parse(localStorage.getItem("currentUser"));
   if (!currentUser) { alert("Debes iniciar sesión."); return; }
-  if ((currentUser.coins || 0) < 10) { alert("No tienes suficientes monedas."); return; }
-  currentUser.coins -= 10;
-  localStorage.setItem("currentUser", JSON.stringify(currentUser));
-  updateUserCoinsDisplay();
-  // Simular giro de tragaperras
-  let result = Math.random() < 0.3 ? "¡Ganaste 50 monedas!" : "No ganaste, intenta de nuevo.";
-  if (result.includes("50")) { currentUser.coins += 50; localStorage.setItem("currentUser", JSON.stringify(currentUser)); updateUserCoinsDisplay(); }
-  document.getElementById("slotResult").textContent = result;
-});
-
-// Botón para PayPal (paypalSpinBtn) redirige a PayPal; este botón está en giveaways.html
-
-// -------------------------
-// FIN DE script.js
+  let found = validCodes.find(item => item.code === code);
+  if (found) {
+    currentUser.coins = (currentUser.coins || 0) + found.value;
+    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+    updateUserCoinsDisplay();
+    alert("Código canjeado: +" + found.value + " monedas");
+    validCodes = validCodes.filter(item => item.code !== code);
+    localStorage.setItem("secretCodes", JSON.stringify(validCodes));
+  } else { alert("Código incorrecto."); }
+}
