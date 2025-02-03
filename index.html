@@ -1,63 +1,37 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LetsGoPol - Inicio</title>
-  <link rel="stylesheet" href="style.css">
-  <!-- Librerías de animación -->
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel del Streamer</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
-  <!-- Menú principal -->
-  <header>
-    <div class="header-container">
-      <div class="logo">
-        <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/8587e006-8578-4c36-b1cc-fa2d067ac9c9-profile_image-70x70.png" alt="Logo LetsGoPol">
-      </div>
-      <nav class="navbar">
-        <a href="index.html">Inicio</a>
-        <a href="about.html">Sobre Mí</a>
-        <a href="register.html">Registrarse</a>
-        <a href="schedule.html">Horario</a>
-        <a href="store.html">Tienda</a>
-        <a href="leaderboard.html">Clasificación</a>
-        <a href="orders.html">Pedidos</a>
-        <a href="giveaways.html">Sorteos</a>
-        <a href="socials.html">Redes</a>
-        <a href="channel.html">Canal</a>
-        <a href="games.html">Minijuegos</a>
-        <a href="login.html" class="auth-btn">Iniciar Sesión</a>
-        <a href="admin.html" class="auth-btn">Admin</a>
-      </nav>
+    <div class="sidebar">
+        <h2>Menú</h2>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="sobremi.html">Sobre Mí</a></li>
+            <li><a href="horario.html">Horario</a></li>
+            <li><a href="tienda.html">Tienda</a></li>
+            <li><a href="clasificacion.html">Clasificación</a></li>
+            <li><a href="pedidos.html">Pedidos</a></li>
+            <li><a href="sorteos.html">Sorteos</a></li>
+            <li><a href="redes.html">Redes</a></li>
+            <li><a href="canal.html">Canal</a></li>
+            <li><a href="minijuegos.html">Minijuegos</a></li>
+            <li><a href="admin.html">Administración</a></li>
+        </ul>
     </div>
-  </header>
-
-  <!-- Sección HERO -->
-  <section id="hero" class="hero">
-    <div id="particles-js"></div>
-    <div class="hero-content">
-      <h1>¡Bienvenidos a mi mundo!</h1>
-      <p class="typed-text"></p>
-      <button onclick="location.href='games.html'">¡Juega conmigo!</button>
+    <div class="content">
+        <div class="login-section">
+            <h2>Bienvenido</h2>
+            <input type="text" id="loginNombre" placeholder="Nombre de usuario">
+            <input type="password" id="loginPassword" placeholder="Contraseña">
+            <button onclick="iniciarSesion()">Iniciar Sesión</button>
+            <p>¿No tienes cuenta? <a href="register.html">Regístrate aquí</a></p>
+        </div>
     </div>
-  </section>
-
-  <!-- Contenido adicional (puedes enlazar a otros archivos para cada apartado) -->
-  <section id="intro" class="intro">
-    <div class="container">
-      <h2>Bienvenido a LetsGoPol</h2>
-      <p>Aquí encontrarás todo: desde mi información personal hasta mis minijuegos y tienda oficial.</p>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 LetsGoPol | Todos los derechos reservados.</p>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
