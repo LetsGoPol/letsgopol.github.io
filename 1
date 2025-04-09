@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LetsGoPol | Streamer Gamer</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preload" href="assets/fonts/orbitron.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Efectos LED -->
+    <div class="led-strip top"></div>
+    <div class="led-strip bottom"></div>
+    <div class="led-strip left"></div>
+    <div class="led-strip right"></div>
+    <div class="scanline"></div>
+    <div class="particles"></div>
+    
+    <!-- Audio Elements -->
+    <audio id="bgMusic" loop>
+        <source src="assets/sounds/ambient.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="clickSound">
+        <source src="assets/sounds/click.wav" type="audio/wav">
+    </audio>
+    <audio id="successSound">
+        <source src="assets/sounds/success.wav" type="audio/wav">
+    </audio>
+
+    <!-- Main Container -->
+    <div class="cyber-container">
+        <!-- Header Gamer -->
+        <header class="cyber-header">
+            <div class="cyber-avatar-container">
+                <img src="assets/images/avatar.png" alt="LetsGoPol" class="cyber-avatar">
+                <div class="cyber-avatar-border"></div>
+                <div class="cyber-avatar-glow"></div>
+            </div>
+            
+            <h1 class="cyber-title">
+                <span class="cyber-text-flicker">LetsGoPol</span>
+                <span class="cyber-subtitle">STREAMER PROFESIONAL</span>
+            </h1>
+            
+            <div class="cyber-social">
+                <a href="https://www.twitch.tv/letsgopol" class="cyber-social-btn twitch" target="_blank">
+                    <i class="fab fa-twitch"></i>
+                </a>
+                <a href="https://www.youtube.com/@letsgopol" class="cyber-social-btn youtube" target="_blank">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://www.instagram.com/letsgopol/" class="cyber-social-btn instagram" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="cyber-main">
+            <section class="cyber-card code-verification">
+                <div class="cyber-card-header">
+                    <h2 class="cyber-card-title">
+                        <i class="fas fa-key"></i> VERIFICACIÓN DE CÓDIGO
+                    </h2>
+                    <div class="cyber-card-decoration"></div>
+                </div>
+                
+                <div class="cyber-card-body">
+                    <div class="cyber-input-group">
+                        <input type="text" id="codeInput" class="cyber-input" maxlength="5" placeholder="00000">
+                        <div class="cyber-input-border"></div>
+                    </div>
+                    
+                    <p id="inputError" class="cyber-error-message"></p>
+                    
+                    <button id="verifyBtn" class="cyber-btn purple">
+                        <i class="fas fa-check-circle"></i> VERIFICAR
+                    </button>
+                    
+                    <div id="verificationResult" class="cyber-code-result">
+                        <span id="verificationCode"></span>
+                        <div class="cyber-code-glow"></div>
+                    </div>
+                    
+                    <div class="cyber-stats">
+                        <div class="cyber-stat available">
+                            <i class="fas fa-check-circle"></i>
+                            <span>DISPONIBLES: <span id="availableCount">10</span></span>
+                        </div>
+                        <div class="cyber-stat used">
+                            <i class="fas fa-times-circle"></i>
+                            <span>USADOS: <span id="usedCount">0</span></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <button id="adminLoginBtn" class="cyber-btn blue admin-btn">
+                <i class="fas fa-user-secret"></i> PANEL ADMIN
+            </button>
+        </main>
+    </div>
+
+    <!-- Admin Panel Modal -->
+    <div id="adminModal" class="cyber-modal">
+        <div class="cyber-modal-content">
+            <span class="cyber-close-modal">&times;</span>
+            
+            <!-- Login Form -->
+            <div id="loginForm" class="cyber-login-form">
+                <div class="cyber-login-header">
+                    <h2 class="cyber-login-title">
+                        <i class="fas fa-lock"></i> ACCESO ADMIN
+                    </h2>
+                    <div class="cyber-login-decoration"></div>
+                </div>
+                
+                <div class="cyber-form-group">
+                    <label class="cyber-form-label">
+                        <i class="fas fa-user"></i> USUARIO
+                    </label>
+                    <input type="text" id="adminUser" class="cyber-form-input">
+                </div>
+                
+                <div class="cyber-form-group">
+                    <label class="cyber-form-label">
+                        <i class="fas fa-key"></i> CONTRASEÑA
+                    </label>
+                    <input type="password" id="adminPass" class="cyber-form-input">
+                </div>
+                
+                <button id="loginBtn" class="cyber-btn purple">
+                    <i class="fas fa-sign-in-alt"></i> INGRESAR
+                </button>
+                
+                <p id="loginError" class="cyber-error-message"></p>
+            </div>
+            
+            <!-- Admin Panel -->
+            <div id="adminPanel" class="cyber-admin-panel">
+                <div class="cyber-admin-header">
+                    <h2 class="cyber-admin-title">
+                        <i class="fas fa-terminal"></i> PANEL DE CONTROL
+                    </h2>
+                    <button id="logoutBtn" class="cyber-btn blue">
+                        <i class="fas fa-sign-out-alt"></i> SALIR
+                    </button>
+                </div>
+                
+                <div class="cyber-admin-stats">
+                    <div class="cyber-stat-box blue">
+                        <div class="cyber-stat-icon">
+                            <i class="fas fa-key"></i>
+                        </div>
+                        <div class="cyber-stat-info">
+                            <h3>TOTAL</h3>
+                            <p id="totalCodesStat">10</p>
+                        </div>
+                    </div>
+                    
+                    <div class="cyber-stat-box green">
+                        <div class="cyber-stat-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="cyber-stat-info">
+                            <h3>DISPONIBLES</h3>
+                            <p id="availableCodesStat">10</p>
+                        </div>
+                    </div>
+                    
+                    <div class="cyber-stat-box red">
+                        <div class="cyber-stat-icon">
+                            <i class="fas fa-times"></i>
+                        </div>
+                        <div class="cyber-stat-info">
+                            <h3>USADOS</h3>
+                            <p id="usedCodesStat">0</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cyber-admin-actions">
+                    <button id="addCodeBtn" class="cyber-btn green">
+                        <i class="fas fa-plus"></i> NUEVO CÓDIGO
+                    </button>
+                </div>
+                
+                <div class="cyber-table-container">
+                    <table class="cyber-table">
+                        <thead>
+                            <tr>
+                                <th><i class="fas fa-hashtag"></i> CÓDIGO</th>
+                                <th><i class="fas fa-check-double"></i> VERIFICACIÓN</th>
+                                <th><i class="fas fa-info-circle"></i> ESTADO</th>
+                                <th><i class="fas fa-cogs"></i> ACCIONES</th>
+                            </tr>
+                        </thead>
+                        <tbody id="codesTableBody">
+                            <!-- Códigos se cargarán aquí -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Code Form Modal -->
+    <div id="codeModal" class="cyber-modal">
+        <div class="cyber-modal-content small">
+            <span class="cyber-close-modal">&times;</span>
+            
+            <div class="cyber-form-header">
+                <h2 id="codeModalTitle" class="cyber-form-title">
+                    <i class="fas fa-key"></i> NUEVO CÓDIGO
+                </h2>
+                <div class="cyber-form-decoration"></div>
+            </div>
+            
+            <div class="cyber-form-group">
+                <label class="cyber-form-label">
+                    <i class="fas fa-hashtag"></i> CÓDIGO NUMÉRICO (5 DÍGITOS)
+                </label>
+                <input type="text" id="numericCodeInput" class="cyber-form-input" maxlength="5" placeholder="00000">
+            </div>
+            
+            <div class="cyber-form-group">
+                <label class="cyber-form-label">
+                    <i class="fas fa-check-double"></i> CÓDIGO DE VERIFICACIÓN (5 LETRAS)
+                </label>
+                <input type="text" id="verificationCodeInput" class="cyber-form-input" maxlength="5" placeholder="AAAAA">
+            </div>
+            
+            <div class="cyber-form-group">
+                <label class="cyber-form-label">
+                    <i class="fas fa-toggle-on"></i> ESTADO
+                </label>
+                <select id="statusSelect" class="cyber-form-input">
+                    <option value="available">DISPONIBLE</option>
+                    <option value="used">USADO</option>
+                </select>
+            </div>
+            
+            <button id="saveCodeBtn" class="cyber-btn green">
+                <i class="fas fa-save"></i> GUARDAR
+            </button>
+            
+            <p id="codeModalError" class="cyber-error-message"></p>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
