@@ -1,1 +1,0 @@
-# letsgopol.github.io
